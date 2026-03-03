@@ -1,0 +1,1315 @@
+/* ===== NEW NAVIGATION BAR STYLES ===== */
+/* ===== SIMPLE FIX - ADD THIS TO THE TOP OF style.css ===== */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+
+img {
+  max-width: 100%;
+}
+
+.desktop-3 {
+  padding-top: 70px !important;
+  height: auto !important;
+  min-height: 3523px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Hide old navigation */
+.container {
+  display: none !important;
+}
+.navbar {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 70px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.brand-text {
+  color: #000000;
+  font-family: "BricolageGrotesque-Bold", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #4a90e2, #00bcd4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: #222222;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #4a90e2;
+  background: rgba(74, 144, 226, 0.1);
+}
+
+.nav-link.active {
+  color: #4a90e2;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: #4a90e2;
+  border-radius: 2px;
+}
+
+.btn-signin {
+  background: #0d0c10;
+  color: #e5fdff;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-signin:hover {
+  background: #4a90e2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* ===== YOUR ORIGINAL STYLES BELOW - UNCHANGED ===== */
+.desktop-3,
+.desktop-3 * {
+  box-sizing: border-box;
+}
+.desktop-3 {
+  background: #ffffff;
+  height: 3523px;
+  position: relative;
+  overflow: hidden;
+}
+.container {
+  border-radius: 24px;
+  width: 1220px;
+  height: 64px;
+  position: absolute;
+  left: calc(50% - 570.71px);
+  top: 28.79px;
+  transform-origin: 0 0;
+  transform: rotate(0.355deg) scale(1, 1);
+}
+.link-home {
+  width: 151px;
+  height: 40px;
+  position: absolute;
+  left: 74px;
+  top: calc(50% - 21px);
+}
+._66303513-e-76-c-9555-d-5583-af-2-logo-svg {
+  width: 126px;
+  height: 28px;
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  translate: 0 -50%;
+  overflow: hidden;
+}
+._66303513-e-76-c-9555-d-5583-af-2-logo-svg-fill {
+  width: 126px;
+  height: 28px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+}
+._66303513-e-76-c-9555-d-5583-af-2-logo-svg2 {
+  width: 126px;
+  height: 28px;
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  top: 50%;
+  overflow: hidden;
+}
+.clip-path-group {
+  height: auto;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+}
+.sign-bridge {
+  color: #000000;
+  text-align: center;
+  font-family: "BricolageGrotesque-Bold", sans-serif;
+  font-size: 24px;
+  line-height: 20px;
+  font-weight: 700;
+  position: absolute;
+  right: -15.28%;
+  left: 19.21%;
+  width: 96.08%;
+  bottom: 10%;
+  top: 10%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.signicon-1 {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: -3.19px;
+  top: 4.77px;
+  transform-origin: 0 0;
+  transform: rotate(-0.355deg) scale(1, 1);
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.link {
+  background: #0d0c10;
+  border-radius: 8px;
+  width: 121px;
+  height: 36px;
+  position: absolute;
+  left: calc(50% - -417px);
+  top: calc(50% - 19px);
+}
+.sign-in {
+  color: #e5fdff;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 11px;
+  width: 93px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navigation {
+  width: 207.8px;
+  height: 36px;
+  position: absolute;
+  left: calc(50% - 72px);
+  top: 50%;
+  translate: 0 -50%;
+}
+.link2 {
+  border-radius: 8px;
+  width: 58.48px;
+  height: 36px;
+  position: absolute;
+  left: calc(50% - 103.9px);
+  top: 50%;
+  translate: 0 -50%;
+}
+.home {
+  color: #222222;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 500;
+  position: absolute;
+  left: calc(50% - 17.24px);
+  top: 10px;
+  width: 57px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.link3 {
+  border-radius: 8px;
+  width: 64.08px;
+  height: 36px;
+  position: absolute;
+  left: calc(50% - 37.42px);
+  top: 50%;
+  translate: 0 -50%;
+}
+.feature {
+  color: #222222;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 500;
+  position: absolute;
+  left: calc(50% - -50.1px);
+  top: 11px;
+  width: 76px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.services {
+  color: #222222;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 500;
+  position: absolute;
+  left: calc(50% - -189.1px);
+  top: 9px;
+  width: 83px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.link4 {
+  border-radius: 8px;
+  width: 69.23px;
+  height: 36px;
+  position: absolute;
+  left: calc(50% - -34.1px);
+  top: calc(50% - 19px);
+}
+.section {
+  border-radius: 24px;
+  width: 1424px;
+  height: 622px;
+  position: absolute;
+  left: calc(50% - 689.14px);
+  top: 168px;
+  transform-origin: 0 0;
+  transform: rotate(0.355deg) scale(1, 1);
+  overflow: hidden;
+}
+.background-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  overflow: hidden;
+}
+._66303513-e-76-c-9555-d-5583-af-6-seperator-20-bottom-svg-fill {
+  width: 1424px;
+  height: 778.38px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+}
+._66303513-e-76-c-9555-d-5583-af-6-seperator-20-bottom-svg {
+  width: 1096px;
+  height: 39px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
+.clip-path-group2 {
+  height: auto;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+}
+._66303513-e-76-c-9555-d-5583-af-5-hero-2520-pattern-p-1600-png {
+  width: 1424px;
+  height: 778.38px;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  translate: 0 -50%;
+  overflow: hidden;
+}
+._66303513-e-76-c-9555-d-5583-af-7-seperator-20-top-svg-fill {
+  width: 1424px;
+  height: 778.38px;
+  position: absolute;
+  left: -4.1px;
+  top: -30px;
+  overflow: hidden;
+}
+.input {
+  background: #0d0c10;
+  border-radius: 8px;
+  width: 146.02px;
+  position: absolute;
+  right: 1039.51px;
+  bottom: 246.7px;
+  top: 495.6838684082031px;
+  overflow: hidden;
+}
+.get-started-it-s-free {
+  color: #e5fdff;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 10px;
+  width: 122.79px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.heading-1 {
+  width: 560px;
+  height: 134.38px;
+  position: absolute;
+  left: 231.57px;
+  top: 95.57px;
+}
+.bridging-worlds-with-sign-bridge {
+  color: #0d0c10;
+  text-align: left;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 56px;
+  line-height: 67.2px;
+  letter-spacing: -1.12px;
+  font-weight: 600;
+  position: absolute;
+  left: 0px;
+  top: -75px;
+  width: 498.14px;
+  height: 134.19px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.container2 {
+  height: 104px;
+  position: absolute;
+  right: 912px;
+  left: 144px;
+  top: 323px;
+}
+.sign-bridge-is-your-go-to-ai-tool-for-effortless-communication-across-languages-convert-audio-text-to-indian-sign-language-isl-and-vice-versa-in-an-instant-whether-you-re-signing-or-speaking-sign-wave-makes-it-simple-to-connect-understand-and-communicate-inclusively-experience-the-power-of-technology-in-bridging-communication-gaps {
+  color: #0d0c10;
+  text-align: left;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 88.48px;
+  top: -70px;
+  width: 433px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._66303513-e-76-c-9555-d-5583-b-3-d-character-20-shadow-png {
+  opacity: 0.8;
+  width: 990px;
+  height: 990px;
+  position: absolute;
+  left: 515.39px;
+  top: -146.2px;
+  overflow: hidden;
+}
+.output-7-removebg-preview-1 {
+  background: linear-gradient(to left, #d1e9ff, #d1e9ff);
+  width: 607px;
+  height: 518.45px;
+  position: absolute;
+  left: 151.98px;
+  top: 95px;
+  backdrop-filter: blur(2px);
+  object-fit: cover;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background-color: #000;
+  color: #b3b3b3;
+}
+
+/* HERO SECTION BIGGER */
+.hero {
+  min-height: 90vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* 🔥 key fix (not space-between) */
+
+  gap: 40px;                 /* control spacing manually */
+  padding: 80px 8%;
+}
+
+
+.hero-content {
+  max-width: 520px;
+}
+
+.hero-content h1 {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.hero-content p {
+  font-size: 20px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.cta {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.hero img {
+  width: 450px;   /* increase from current */
+  max-width: 100%;
+}
+
+
+
+.section2 {
+  width: 1136px;
+  height: 844px;
+  position: absolute;
+  left: calc(50% - 543.77px);
+  top: 814px;
+  transform-origin: 0 0;
+  transform: rotate(0.355deg) scale(1, 1);
+}
+.container3 {
+  width: 574px;
+  height: 219.19px;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 0px;
+}
+.heading-2 {
+  width: 574px;
+  height: 115.19px;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 40px;
+}
+.explore-our-features {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 48px;
+  line-height: 57.6px;
+  letter-spacing: -0.48px;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: -1px;
+  width: 493.18px;
+  height: 115.59px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.our-innovative-tool-bridges-communication-gaps-enhancing-accessibility-and-understanding-in-real-time-transactions {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 269px);
+  top: 133px;
+  width: 556px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+._66303513-e-76-c-9555-d-5583-b-48-gradient-png {
+  opacity: 0.72;
+  width: 1672px;
+  height: 1321px;
+  position: absolute;
+  left: -268px;
+  top: 0px;
+  overflow: hidden;
+}
+.background-shadow {
+  background: #e5fdff;
+  border-radius: 24px;
+  position: absolute;
+  right: 671px;
+  left: 97px;
+  bottom: 127px;
+  top: 223px;
+  box-shadow: 0px 20px 56px 0px rgba(69, 65, 113, 0.16);
+}
+.background {
+  background: #f4f3f8;
+  border-radius: 16px;
+  height: 248px;
+  position: absolute;
+  right: 8px;
+  left: 8px;
+  top: 234px;
+  overflow: hidden;
+}
+.output-9-1 {
+  width: 512px;
+  height: 512px;
+  position: absolute;
+  left: -106px;
+  top: -184.79px;
+}
+.output-8-removebg-preview-1 {
+  width: 256px;
+  height: 243px;
+  position: absolute;
+  left: 48px;
+  top: -6.79px;
+  object-fit: cover;
+}
+.heading-3 {
+  height: 72.78px;
+  position: absolute;
+  right: 28px;
+  left: 28px;
+  top: 19px;
+}
+.sign-to-text-audio {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 28px;
+  line-height: 36.4px;
+  letter-spacing: -0.28px;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 1px;
+  width: 293.22px;
+  height: 70.39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.translate-indian-sign-language-gestures-into-clear-text-or-audio-instantly {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 149px);
+  top: 106px;
+  width: 304.99px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.link5 {
+  background: #e5fdff;
+  border-radius: 8px;
+  height: 36px;
+  position: absolute;
+  right: 28px;
+  left: 28px;
+  top: 184px;
+  box-shadow: 0px 0px 0px 1px rgba(232, 230, 240, 1),
+    0px 1px 1px 0px rgba(13, 12, 16, 0.04);
+  overflow: hidden;
+}
+.translate-to-text-audio {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 10.21px;
+  width: 152px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background-shadow2 {
+  background: #e5fdff;
+  border-radius: 24px;
+  position: absolute;
+  right: 116px;
+  left: 652px;
+  bottom: 123px;
+  top: 227px;
+  box-shadow: 0px 20px 56px 0px rgba(69, 65, 113, 0.16);
+}
+.background2 {
+  background: #f4f3f8;
+  border-radius: 16px;
+  height: 248px;
+  position: absolute;
+  right: 8px;
+  left: 8px;
+  top: 233px;
+  overflow: hidden;
+}
+.output-8-removebg-preview-2 {
+  width: 296px;
+  height: 236px;
+  position: absolute;
+  left: 20px;
+  top: 0.21px;
+  object-fit: cover;
+}
+.heading-32 {
+  height: 72.78px;
+  position: absolute;
+  right: 28px;
+  left: 28px;
+  top: 23px;
+}
+.text-audio-to-sign {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 28px;
+  line-height: 36.4px;
+  letter-spacing: -0.28px;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 1px;
+  width: 298.54px;
+  height: 70.39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.easily-transform-text-or-audio-into-indian-sign-language-animations-for-better-communication {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 115px;
+  width: 304.99px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.link6 {
+  background: #e5fdff;
+  border-radius: 8px;
+  height: 36px;
+  position: absolute;
+  right: 28px;
+  left: 28px;
+  top: 187px;
+  box-shadow: 0px 0px 0px 1px rgba(232, 230, 240, 1),
+    0px 1px 1px 0px rgba(13, 12, 16, 0.04);
+  overflow: hidden;
+}
+.convert-to-sign-language {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 10.21px;
+  width: 168px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section3 {
+  width: 1136px;
+  height: 433px;
+  position: absolute;
+  left: calc(50% - 549.12px);
+  top: 1677.98px;
+  transform-origin: 0 0;
+  transform: rotate(0.355deg) scale(1, 1);
+}
+.background3 {
+  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  left: 114px;
+  top: 195px;
+}
+.svg {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  top: 50%;
+}
+.group {
+  width: 84.38%;
+  height: 84.37%;
+  position: absolute;
+  right: 9.37%;
+  left: 6.25%;
+  bottom: 6.25%;
+  top: 9.37%;
+  overflow: visible;
+}
+.audio-to-sign-language {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  font-weight: 600;
+  position: absolute;
+  left: calc(50% - 552px);
+  top: 255px;
+  width: 223px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.convert-spoken-words-into-indian-sign-language-gestures {
+  color: #52505f;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 558px);
+  top: 293px;
+  width: 228.72px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.background4 {
+  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  left: 402px;
+  top: 195px;
+}
+.group2 {
+  width: 81.25%;
+  height: 90.63%;
+  position: absolute;
+  right: 9.38%;
+  left: 9.38%;
+  bottom: 3.12%;
+  top: 6.25%;
+  overflow: visible;
+}
+.text-to-sign-language {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  font-weight: 600;
+  position: absolute;
+  left: calc(50% - 258px);
+  top: 255px;
+  width: 231.22px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.translate-written-text-into-indian-sign-language {
+  color: #52505f;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 259px);
+  top: 287px;
+  width: 228.72px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.background5 {
+  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  left: 696px;
+  top: 195px;
+}
+.group3 {
+  width: 87.39%;
+  height: 68.61%;
+  position: absolute;
+  right: 6.29%;
+  left: 6.32%;
+  bottom: 15.78%;
+  top: 15.61%;
+  overflow: visible;
+}
+.sign-language-to-text {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  font-weight: 600;
+  position: absolute;
+  left: calc(50% - -43px);
+  top: 255px;
+  width: 215px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.instantly-convert-sign-language-into-written-text {
+  color: #52505f;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - -36px);
+  top: 290px;
+  width: 228.72px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.group-1 {
+  position: absolute;
+  inset: 0;
+}
+.background6 {
+  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  left: 984px;
+  top: 195px;
+}
+.group4 {
+  width: 75.01%;
+  height: 75%;
+  position: absolute;
+  right: 12.49%;
+  left: 12.49%;
+  bottom: 12.5%;
+  top: 12.5%;
+  overflow: visible;
+}
+.sign-language-to-audio {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 59.87px;
+  width: 224px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.convert-sign-language-gestures-into-spoken-words {
+  color: #52505f;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 400;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 98px;
+  width: 228.72px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container4 {
+  width: 574px;
+  height: 192px;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 0px;
+}
+._66303513-e-76-c-9555-d-5583-af-3-element-2015-png {
+  width: 72px;
+  height: 72px;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: calc(50% - 96px);
+  overflow: hidden;
+  object-fit: cover;
+}
+.heading-4-grow-your-business-to-the-next-level {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.32px;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 88px;
+  width: 555.92px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section4 {
+  background: linear-gradient(to left, #0d0c10, #0d0c10);
+  border-radius: 32px;
+  width: 944px;
+  height: 394px;
+  position: absolute;
+  left: calc(50% - 448.56px);
+  top: 2116px;
+  transform-origin: 0 0;
+  transform: rotate(0.355deg) scale(1, 1);
+}
+._66303513-e-76-c-9555-d-5583-b-18-cta-20-logo-png {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: calc(50% - 237px);
+  overflow: hidden;
+  object-fit: cover;
+}
+.heading-3-get-started-with-otake {
+  color: #ffffff;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 48px;
+  line-height: 57.6px;
+  letter-spacing: -0.48px;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 113px;
+  width: 647px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.explore-a-new-realm-of-efficiency-and-success-with-our-cutting-edge-saa-s {
+  color: #c8c6d3;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 179px;
+  width: 567.09px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.link7 {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 208.36px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: calc(50% - -92.95px);
+}
+.get-started {
+  color: #0d0c10;
+  text-align: center;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 10.05px;
+  width: 77px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section5 {
+  background: linear-gradient(to left, #0d0c10, #0d0c10);
+  border-radius: 24px;
+  width: 1274.31px;
+  height: 643px;
+  position: absolute;
+  left: calc(50% - 644.01px);
+  top: 2665px;
+  transform-origin: 0 0;
+  transform: rotate(0.355deg) scale(1, 1);
+}
+.sign-bridge-is-an-ai-powered-platform-dedicated-to-bridging-communication-gaps-between-individuals-with-hearing-speech-and-other-impairments-and-the-wider-community-our-mission-is-to-create-an-inclusive-environment-by-offering-seamless-translation-between-audio-text-and-indian-sign-language-isl-with-cutting-edge-technology-and-user-friendly-features-we-empower-everyone-to-communicate-without-barriers-let-s-connect-the-world-one-sign-at-a-time {
+  color: #878493;
+  text-align: center;
+  font-family: "Inter-Regular", sans-serif;
+  font-size: 24px;
+  line-height: 35px;
+  font-weight: 400;
+  position: absolute;
+  left: calc(50% - 474.45px);
+  top: 255.9px;
+  width: 980px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.horizontal-divider {
+  width: 534px;
+  height: 1px;
+  position: absolute;
+  left: calc(50% - -49.55px);
+  top: calc(50% - -95.9px);
+  overflow: visible;
+}
+.powered-by-a-passionate-team-dedicated-to-inclusivity-and-innovation {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Inter-Medium", sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 500;
+  position: absolute;
+  left: 400px;
+  top: 430px;
+  width: 531px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.container5 {
+  height: 80px;
+  position: absolute;
+  right: 542.6px;
+  left: 641.7034301757812px;
+  top: 504.9px;
+}
+.link8 {
+  width: 28px;
+  position: absolute;
+  left: 0px;
+  bottom: 52px;
+  top: 0px;
+}
+.svg2 {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  top: 50%;
+  overflow: visible;
+}
+.link9 {
+  width: 28px;
+  position: absolute;
+  left: 40px;
+  bottom: 52px;
+  top: 0px;
+}
+.svg3 {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  top: 50%;
+  overflow: visible;
+}
+.link10 {
+  width: 28px;
+  position: absolute;
+  left: 80px;
+  bottom: 52px;
+  top: 0px;
+}
+.svg4 {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  top: 50%;
+  overflow: visible;
+}
+.link11 {
+  width: 28px;
+  position: absolute;
+  left: 120px;
+  bottom: 52px;
+  top: 0px;
+}
+.svg5 {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  top: 50%;
+  overflow: visible;
+}
+.about-sign-bridge {
+  color: #ffff;
+  text-align: center;
+  font-family: "BricolageGrotesque-SemiBold", sans-serif;
+  font-size: 48px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  font-weight: 500;
+  position: absolute;
+  left: calc(50% - 209.75px);
+  top: 61.78px;
+  width: 402.06px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
