@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        body {
+            background-color: #C2D2D2;
+            color: #C2D2D2;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .dark {
+            background-color: #b6e8ef;
+            color: #ffffff;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(219, 54, 54, 0.1);
+            width: 100%;
+            max-width: 450px;
+            min-width: 300px;
+        }
+        .dark .container {
+            background-color: #111114;
+        }
+        h1 {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            color: #111827;
+            background-color: #f9fafb;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        .dark input[type="text"],
+        .dark input[type="password"],
+        .dark input[type="number"] {
+            background-color: #ffffff;
+            border-color: #2d3748;
+            color: #000000;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #63b3ed;
+            box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.5);
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #38b2ac;
+            color: #ffffff;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #4fd1c5;
+        }
+        .dark button {
+            background-color: #319795;
+        }
+        .dark button:hover {
+            background-color: #2c7a7b;
+        }
+        p {
+            margin-top: 24px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .text-primary-600 {
+            color: #ffffff;
+        }
+        .text-primary-600:hover {
+            text-decoration: underline;
+        }
+        .forgot-password {
+            display: block;
+            margin-top: 12px;
+            font-size: 1rem;
+            text-align: center;
+            color: #3182ce;
+            text-decoration: none;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.875rem;
+            margin-top: -15px;
+            margin-bottom: 10px;
+        }
+        .otp-section {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="dark">
+<div class="container">
+    <h1>Login</h1>
+
+    <form id="loginForm" onsubmit="return validateForm(event)">
+
+        <div class="mb-4">
+            <label>Email</label>
+            <input type="text" id="username" placeholder="Enter your Email" required>
+            <div id="usernameError" class="error-message"></div>
+        </div>
+
+        <div class="mb-4">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <div id="passwordError" class="error-message"></div>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+
+    <!-- OTP -->
+    <div class="otp-section" id="otpSection">
+        <h2>OTP Verification</h2>
+        <input type="text" id="otp" placeholder="Enter OTP">
+        <div id="otpError" class="error-message"></div>
+        <button type="button" onclick="verifyOTP()">Verify OTP</button>
+    </div>
+
+    <p>
+        Don't have an account? <a href="/register" class="text-primary-600">Register</a>
+    </p>
+
+    <a href="/reset" class="forgot-password">Forgot Password?</a>
+</div>
+
+
+<script>
+let userEmail = "";
+
+
+/* =====================
+   LOGIN
+===================== */
+function validateForm(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    userEmail = email;
+
+    loginUser(email, password);
+}
+
+
+async function loginUser(email, password) {
+
+    const response = await fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        alert(data.error || "Login failed");
+        return;
+    }
+
+    alert("OTP sent to your email");
+
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("otpSection").style.display = "block";
+}
+
+
+/* =====================
+   VERIFY OTP
+===================== */
+async function verifyOTP() {
+
+    const otp = document.getElementById("otp").value;
+
+    if (!otp) {
+        document.getElementById("otpError").textContent = "Please enter OTP";
+        return;
+    }
+
+    const response = await fetch("/verify-login-otp", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: userEmail, otp })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        document.getElementById("otpError").textContent = data.error;
+        return;
+    }
+
+    alert("Login successful!");
+    window.location.href = "/home";
+}
+</script>
+
+</body>
+</html>

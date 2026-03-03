@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SignBridge</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #b6e8ef;
+  color: #111;
+  padding-top: 90px; /* FIX for fixed navbar */
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 70px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.brand-text {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ================= HERO ================= */
+.hero {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.hero h1 {
+  font-size: 54px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: 16px;
+  color: #444;
+  max-width: 620px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+/* ================= CARDS ================= */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  padding: 70px 80px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #dff9ff;
+  width: 430px;
+  border-radius: 28px;
+  padding: 36px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 50px rgba(0,0,0,0.12);
+}
+
+.card h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: #fff;
+  border: 2px solid #b6e8ef;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.25s;
+}
+
+.btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+.card img {
+  width: 100%;
+  margin-top: 26px;
+  border-radius: 18px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 900px){
+  .features{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero h1{
+    font-size: 40px;
+  }
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.logout-btn:hover {
+  background: #444;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo-wrapper">
+      <img class="logo-icon" src="icons/signicon.jpg" alt="SignBridge">
+      <div class="brand-text">SignBridge</div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="logout-btn" onclick="location.href='/signout'">Logout</button>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Explore Our Features</h1>
+  <p>
+    Our innovative tool bridges communication gaps, enhancing accessibility
+    and understanding in real-time transactions.
+  </p>
+</section>
+
+
+<!-- FEATURES -->
+<section class="features">
+
+  <div class="card">
+    <h2>Sign to Text & Audio</h2>
+    <p>Translate Indian Sign Language gestures into clear text or audio instantly</p>
+    <button class="btn" onclick="location.href='/signtext'" >Translate to Text/Audio</button>
+    <img src="static/icons/sign to text.png">
+  </div>
+
+  <div class="card">
+    <h2>Text & Audio to Sign</h2>
+    <p>Easily transform text or audio into Indian Sign Language animations for better communication.</p>
+    <button class="btn" onclick="location.href='/textsign'"> Convert to Sign Language</button>
+    <img src="static/icons/text to sign.png">
+  </div>
+
+</section>
+
+</body>
+</html>

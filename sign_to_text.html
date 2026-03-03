@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign Language → Text</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+  /* ================= NAVBAR ================= */
+.navbar {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 70px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.brand-text {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+body{
+  font-family:Poppins;
+  background:#b6e8ef;
+  text-align:center;
+  padding:30px;
+}
+
+/* camera */
+.cam-wrapper{
+  position:relative;
+  display:inline-block;
+}
+
+video{
+  width:500px;
+  border-radius:14px;
+}
+
+#overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  pointer-events:none;
+}
+
+/* buttons */
+button{
+  padding:10px 18px;
+  margin:10px;
+  border:none;
+  border-radius:8px;
+  background:black;
+  color:white;
+  cursor:pointer;
+}
+
+/* output */
+.output-box{
+  width:80%;
+  height:160px;
+  background:white;
+  margin:30px auto;
+  padding:15px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+  overflow-y:auto;
+  white-space:pre-wrap;
+  word-wrap:break-word;
+  text-align:left;
+}
+#video{
+  display:none;
+}
+
+.back-btn{
+  position:absolute;
+  left:20px;
+  top:15px;
+  padding:8px 14px;
+  border:none;
+  border-radius:8px;
+  background:black;
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.back-btn:hover{
+  background:#333;
+}
+
+
+</style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+     <!-- Back Button -->
+    <button class="back-btn" onclick="goBack()">← Back</button>
+    <div class="logo-wrapper">
+      <img class="logo-icon" src="icons/signicon.jpg" alt="SignBridge">
+      <div class="brand-text">SignBridge</div>
+    </div>
+
+  </div>
+</nav>
+
+
+<div class="cam-wrapper">
+  <video id="video" autoplay></video>
+  <!--<canvas id="overlay"></canvas> -->
+  <canvas id="canvas"></canvas>
+</div>
+
+<br>
+
+<button id="startBtn" onclick="startDetection()">Start Capture</button>
+<button onclick="speak()">Play Audio</button>
+
+<div class="output-box" id="outputText">
+Translated text will appear here.
+</div>
+
+
+<script>
+const video = document.getElementById("video");
+const canvas = document.getElementById("canvas");
+
+
+const ctx = canvas.getContext("2d");
+
+
+const outputText = document.getElementById("outputText");
+
+let running=false;
+let interval=null;
+
+let sentence="";
+
+/* ===== SMART FILTER VARIABLES ===== */
+let buffer=[];
+let currentStable="";
+let stableStart=0;
+let lastLetterTime=0;
+
+const SMOOTH_SIZE=10;
+const HOLD_TIME=800;      // must hold 0.8s
+const SPACE_DELAY=1500;   // pause → space
+const DELETE_GESTURE="Delete";
+
+
+/* ================= CAMERA ================= */
+navigator.mediaDevices.getUserMedia({video:true})
+.then(stream=> video.srcObject=stream);
+
+
+/* ================= START/STOP ================= */
+function startDetection(){
+
+  if(running){
+    clearInterval(interval);
+    running=false;
+    startBtn.innerText="Start Capture";
+    return;
+  }
+
+  running=true;
+  startBtn.innerText="Stop Capture";
+
+  interval=setInterval(captureFrame,450); // slower = stable
+}
+
+
+/* ================= CAPTURE ================= */
+function captureFrame(){
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  // draw camera
+  ctx.drawImage(video,0,0);
+
+  const image = canvas.toDataURL("image/jpeg");
+
+  fetch('/stpredict',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({image:image})
+  })
+  .then(r=>r.json())
+  .then(data=>{
+      drawSkeleton(data.landmarks);   // same canvas now
+      processPrediction(data.prediction);
+  });
+}
+
+
+/* ================= HAND SKELETON ================= */
+const connections=[
+[0,1],[1,2],[2,3],[3,4],
+[0,5],[5,6],[6,7],[7,8],
+[5,9],[9,10],[10,11],[11,12],
+[9,13],[13,14],[14,15],[15,16],
+[13,17],[17,18],[18,19],[19,20],
+[0,17]
+];
+
+function drawSkeleton(allHands){
+
+  if(!allHands || !allHands.length) return;
+
+  ctx.shadowBlur = 12;
+  ctx.shadowColor = "lime";
+
+  ctx.lineWidth = 4;
+  ctx.lineCap = "round";
+  ctx.strokeStyle = "#00ff66";
+
+  allHands.forEach(landmarks => {
+
+    connections.forEach(([a,b])=>{
+      const x1 = landmarks[a][0] * canvas.width;
+      const y1 = landmarks[a][1] * canvas.height;
+      const x2 = landmarks[b][0] * canvas.width;
+      const y2 = landmarks[b][1] * canvas.height;
+
+      ctx.beginPath();
+      ctx.moveTo(x1,y1);
+      ctx.lineTo(x2,y2);
+      ctx.stroke();
+    });
+
+    landmarks.forEach(l=>{
+      const x=l[0]*canvas.width;
+      const y=l[1]*canvas.height;
+
+      ctx.beginPath();
+      ctx.arc(x,y,5,0,Math.PI*2);
+      ctx.fillStyle="#ffff00";
+      ctx.fill();
+    });
+
+  });
+
+  ctx.shadowBlur = 0;
+}
+
+
+/* ================= SMOOTH + HOLD LOGIC ================= */
+function processPrediction(pred){
+
+  if(!pred) return;
+
+  const now=Date.now();
+
+  /* ---- majority vote smoothing ---- */
+  buffer.push(pred);
+  if(buffer.length>SMOOTH_SIZE) buffer.shift();
+
+  const count={};
+  buffer.forEach(p=>count[p]=(count[p]||0)+1);
+
+  const smooth = Object.keys(count)
+        .reduce((a,b)=>count[a]>count[b]?a:b);
+
+
+  /* ---- delete ---- */
+  if(smooth===DELETE_GESTURE){
+      sentence=sentence.slice(0,-1);
+      updateUI();
+      return;
+  }
+
+
+  /* ---- hold detection ---- */
+  if(smooth!==currentStable){
+      currentStable=smooth;
+      stableStart=now;
+      return;
+  }
+
+  // only accept after hold time
+  if(now-stableStart>HOLD_TIME){
+
+      // add space if pause
+      if(now-lastLetterTime>SPACE_DELAY){
+          sentence+=" ";
+      }
+
+      sentence+=smooth;
+      lastLetterTime=now;
+      stableStart=now+999999; // avoid repeat spam
+      updateUI();
+  }
+}
+
+
+function updateUI(){
+  outputText.innerText=sentence;
+}
+
+function goBack(){
+  window.history.back();
+}
+
+/* ================= SPEECH ================= */
+function speak(){
+  speechSynthesis.speak(new SpeechSynthesisUtterance(sentence));
+}
+</script>

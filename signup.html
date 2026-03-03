@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        
+body {
+    background-color: #b6e8ef;
+    color: #fafbfe;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container Styles */
+.container {
+    background-color: #0c0000;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(134, 11, 11, 0.1);
+    width: 100%;
+    max-width: 600px; /* Increase the max width for desktop */
+    min-width: 400px; /* Set a reasonable minimum width for large screens */
+    box-sizing: border-box;
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 2rem; /* Increase the heading size for desktop */
+    font-weight: bold;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* Label Styles */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Input Fields */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: #111827;
+    background-color: #f9fafb;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: #63b3ed;
+    box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.5);
+}
+
+/* Dropdown for role selection */
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: #111827;
+    background-color: #f9fafb;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+/* Button Styles */
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #38b2ac;
+    color: #ffffff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
+
+button:hover {
+    background-color: #4fd1c5;
+}
+
+button:disabled {
+    background-color: #e2e8f0;
+    cursor: not-allowed;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: -12px;
+    margin-bottom: 16px;
+}
+
+/* Show Password Icon */
+.show-password-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: #888;
+}
+
+/* OTP Section */
+#otpSection {
+    display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+        padding: 10px;
+    }
+
+    button {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 16px;
+        max-width: 100%; /* Allow the container to take full width on small screens */
+        min-width: 100%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+        padding: 8px;
+    }
+
+    button {
+        padding: 10px;
+    }
+}
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Register</h1>
+
+    <!-- IMPORTANT: prevent default submit -->
+    <form id="registerForm" onsubmit="return false;">
+
+        <!-- Email -->
+        <div>
+            <label>Email</label>
+            <input type="email" id="email" required>
+        </div>
+
+        <!-- Password -->
+        <div>
+            <label>Password</label>
+            <input type="password" id="password" required>
+        </div>
+
+        <!-- Send OTP -->
+        <!-- ⭐ type="button" prevents form submit -->
+        <button type="button" onclick="sendOtp()">Send OTP</button>
+
+        <!-- OTP Section -->
+        <div id="otpSection">
+            <label>OTP</label>
+            <input type="text" id="otp">
+
+            <!-- ⭐ type="button" -->
+            <button type="button" onclick="verifyOtp()">Register</button>
+        </div>
+    </form>
+
+    <p>
+        Already have an account? <a href="/signin">Login</a>
+    </p>
+</div>
+
+
+<script>
+let userEmail = "";
+
+/* =========================
+   SEND OTP
+========================= */
+async function sendOtp() {
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    userEmail = email;
+
+    const res = await fetch("/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        alert(data.error);
+        return;
+    }
+
+    alert("OTP sent to your email");
+
+    // ⭐ SHOW OTP INPUT
+    document.getElementById("otpSection").style.display = "block";
+}
+
+
+/* =========================
+   VERIFY OTP
+========================= */
+async function verifyOtp() {
+
+    const otp = document.getElementById("otp").value;
+
+    const res = await fetch("/verify-registration-otp", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: userEmail,
+            otp
+        })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        alert(data.error);
+        return;
+    }
+
+    alert("Registration successful!");
+    window.location.href = "/signin";
+}
+</script>
+
+</body>
+</html>
